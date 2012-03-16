@@ -169,6 +169,12 @@ function validate(elem) {
 		error.html('Required.');
 		return false;
 	}
+	if(elem.attr('id')=='eligible') {
+		if(elem.attr('checked')!='checked') {
+			error.html('Required.');
+			return false;
+		}
+	}
 	if(elem.hasClass("amount") && value<0.50){
 		error.html('Minimum charge is $0.50');
 		return false;
