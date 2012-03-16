@@ -6,7 +6,7 @@
 		
 		$liveSecretKey = $_POST['live_secret_key'];
 		update_option('stripe_payment_live_secret_key', $liveSecretKey);
-
+		
 		$testPublicKey = $_POST['test_public_key'];
 		update_option('stripe_payment_test_public_key', $testPublicKey);
 		
@@ -22,6 +22,11 @@
 		$transPrefix = $_POST['trans_prefix'];
 		update_option('stripe_payment_trans_prefix', $transPrefix);
 		
+		$ellaKey = $_POST['ella_key'];
+		update_option('stripe_payment_ella_key', $ellaKey);
+		
+		$ellaSecret = $_POST['ella_secret'];
+		update_option('stripe_payment_ella_secret', $ellaSecret);
 		?>
 		
 		<div class="updated"><p><strong><?php _e('Options saved.'); ?></strong></p></div>
@@ -29,13 +34,15 @@
 		<?php
 	} else {
 		// Normal page display
-		$livePublicKey 			= get_option('stripe_payment_live_public_key');
-		$liveSecretKey 			= get_option('stripe_payment_live_secret_key');
-		$testPublicKey 			= get_option('stripe_payment_test_public_key');
-		$testSecretKey 			= get_option('stripe_payment_test_secret_key');
+		$livePublicKey 		= get_option('stripe_payment_live_public_key');
+		$liveSecretKey 		= get_option('stripe_payment_live_secret_key');
+		$testPublicKey 		= get_option('stripe_payment_test_public_key');
+		$testSecretKey 		= get_option('stripe_payment_test_secret_key');
 		$isLiveKeys 		= get_option('stripe_payment_is_live_keys');
 		$currencySymbol 	= get_option('stripe_payment_currency_symbol');
 		$transPrefix 		= get_option('stripe_payment_trans_prefix');
+		$ellaKey 			= get_option('stripe_payment_ella_key');
+		$ellaSecret 		= get_option('stripe_payment_ella_secret');
 	}
 	
 ?>
@@ -99,7 +106,19 @@
 				<span>This will prefix all transactions in the stripe dashboard. (e.g. Terminal)</span>
 			</li>
 		</ul>
-
+		<h4>Ella Info (Reporting)</h4>
+		<p>These keys allow you to pull reports in Revere Dashboard later.</p>
+		<ul>
+			<li>
+				<label for="ella_key">Key:</label>
+				<input type="text" name="ella_key" value="<?php echo $ellaKey; ?>" />
+			</li>
+			<li>
+				<label for="ella_secret">Secret:</label>
+				<input type="text" name="ella_secret" value="<?php echo $ellaSecret; ?>" />
+			</li>
+		</ul>
+		
 		<p class="submit">
 			<input class="button-primary" type="submit" name="Submit" value="<?php _e('Save Options'); ?>" />
 		</p>

@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Stripe Payments
-Plugin URI: http://diglabs.com
-Description: This plugin allows the Stripe payment system to be easily integrated into Wordpress.
+Plugin Name: Political Donations
+Plugin URI: http://revolutionmessaging.com/best-of-breed
+Description: This plugin turns Wordpress, Stripe.com, and Postmark into the best political donation website ever!!
 Author: Bob Cravens
 Version: 1.5.19.1
 Author URI: http://diglabs.com/
@@ -16,6 +16,8 @@ $secretKey 			= get_option('stripe_payment_test_secret_key');
 if($isLive) {
 	$publicKey 		= get_option('stripe_payment_live_public_key');
 	$secretKey 		= get_option('stripe_payment_live_secret_key');
+	$ellaKey 			= get_option('stripe_payment_ella_key');
+	$ellaSecret 		= get_option('stripe_payment_ella_secret');
 }
 $currencySymbol 	= get_option('stripe_payment_currency_symbol');
 $transPrefix 		= get_option('stripe_payment_trans_prefix');
@@ -40,5 +42,3 @@ if ( ! defined( 'STRIPE_PAYMENTS_PAYMENT_URL' ) )
 
 // Bootstrap this plugin
 require_once STRIPE_PAYMENTS_PLUGIN_DIR . '/initialize.php';
-
-?>

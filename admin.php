@@ -19,5 +19,3 @@ function admin_register_head() {
 	$url = STRIPE_PAYMENTS_PLUGIN_URL.'/admin.css';
 	echo "<link rel='stylesheet' type='text/css' href='$url' />\n";
 }
-
-?>
