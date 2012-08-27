@@ -3,46 +3,46 @@
 		// Form data sent
 		$livePublicKey = $_POST['live_public_key'];
 		update_option('stripe_payment_live_public_key', $livePublicKey);
-		
+
 		$liveSecretKey = $_POST['live_secret_key'];
 		update_option('stripe_payment_live_secret_key', $liveSecretKey);
-		
+
 		$testPublicKey = $_POST['test_public_key'];
 		update_option('stripe_payment_test_public_key', $testPublicKey);
-		
+
 		$testSecretKey = $_POST['test_secret_key'];
 		update_option('stripe_payment_test_secret_key', $testSecretKey);
-		
+
 		$isLiveKeys = $_POST['is_live_keys'];
 		update_option('stripe_payment_is_live_keys', $isLiveKeys);
-		
+
 		$currencySymbol = $_POST['currency_symbol'];
 		update_option('stripe_payment_currency_symbol', $currencySymbol);
-		
+
 		$transPrefix = $_POST['trans_prefix'];
 		update_option('stripe_payment_trans_prefix', $transPrefix);
-		
+
 		$ellaKey = $_POST['ella_key'];
 		update_option('stripe_payment_ella_key', $ellaKey);
-		
+
 		$ellaSecret = $_POST['ella_secret'];
 		update_option('stripe_payment_ella_secret', $ellaSecret);
-		
+
 		$postmarkKey = $_POST['postmark_key'];
 		update_option('stripe_postmark_key', $postmarkKey);
-		
+
 		$postmarkFromAddress = $_POST['postmark_from_address'];
 		update_option('stripe_postmark_address', $postmarkFromAddress);
-		
+
 		$postmarkFromName = $_POST['postmark_from_name'];
 		update_option('stripe_postmark_name', $postmarkFromName);
-		
+
 		$postmarkSubject = $_POST['postmark_subject'];
 		update_option('stripe_postmark_subject', $postmarkSubject);
 		?>
-		
+
 		<div class="updated"><p><strong><?php _e('Options saved.'); ?></strong></p></div>
-		
+
 		<?php
 	} else {
 		// Normal page display
@@ -59,13 +59,13 @@
 		$postmarkFromAddress 	= get_option('stripe_postmark_address');
 		$postmarkFromName 		= get_option('stripe_postmark_name');
 	}
-	
+
 ?>
 
 
 <div id="stripe-payments-admin-wrap" class="wrap">
 	<h2>Stripe Payments - Options</h2>
-	
+
 	<h4>Instructions</h4>
 	<div class="instructions">
 		<p>To add a payment form to a page or post use the following short code:</p>
@@ -107,7 +107,8 @@
 		<ul>
 			<li>
 				<label for="is_live">Use Live Keys?:</label>
-				<input type="checkbox" name="is_live_keys" <?php if($isLiveKeys){echo 'checked=checked';} ?> />
+				<input type="hidden" name="is_live_keys" value="0" />
+				<input type="checkbox" name="is_live_keys" value="1" <?php if($isLiveKeys){echo 'checked=checked';} ?> />
 				<span>Leave unchecked for testing. Check when you are ready to <strong>go live</strong>.</span>
 			</li>
 			<li>
@@ -133,7 +134,7 @@
 				<input type="text" name="ella_secret" value="<?php echo $ellaSecret; ?>" />
 			</li>
 		</ul>
-		
+
 		<h4>Postmark Receipt Email (optional)</h4>
 		<p>Use your <a href="http://postmarkapp.com">postmarkapp.com</a> account to send a styled email receipt.</p>
 		<ul>
@@ -154,7 +155,7 @@
 				<input type="text" name="postmark_subject" value="<?php echo $postmarkSubject; ?>" />
 			</li>
 		</ul>
-		
+
 		<p class="submit">
 			<input class="button-primary" type="submit" name="Submit" value="<?php _e('Save Options'); ?>" />
 		</p>

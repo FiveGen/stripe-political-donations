@@ -10,7 +10,7 @@ Author URI: http://diglabs.com/
 
 // Settings
 $isLiveKeys 			= get_option('stripe_payment_is_live_keys');
-$isLive 				= strlen($isLiveKeys)==0?false:true;
+$isLive 				= $isLiveKeys==0?false:true;
 $publicKey 				= get_option('stripe_payment_test_public_key');
 $secretKey 				= get_option('stripe_payment_test_secret_key');
 if($isLive) {
