@@ -6,7 +6,7 @@
 //	being posted to your site. All sensitive card holder info
 //	is only sent to Stripe.com using HTTPS.
 function create_payment_form($amount = 100, $paymentId = null, $paymentUrl=STRIPE_PAYMENTS_PAYMENT_URL) {
-		
+
 	return <<<EOT
 <div id="stripe-payment-wrap">
 	<form action="$paymentUrl" method="post" id="stripe-payment-form">
@@ -44,7 +44,7 @@ function create_payment_form($amount = 100, $paymentId = null, $paymentUrl=STRIP
 			&nbsp;/&nbsp;
 			<select id="cardExpiryYear" class="required card-expiry-year stripe-sensitive"></select>
 	    </div>
-		
+
 		<div id="sec-info">
 			<h3>Employment Information</h3>
 		    <div class="stripe-payment-form-row">
@@ -73,7 +73,7 @@ function create_payment_form($amount = 100, $paymentId = null, $paymentUrl=STRIP
 				<small>Federal law requires us to use our best efforts to collect and report the name, address, occupation and name of employer of individuals whose contributions exceed $200 per election cycle. We may accept contributions from an individual totaling up to $2,500.00 per election.</small>
 			</div>
 		</div>
-		
+
 	    <div class="stripe-payment-form-row-submit">
 			<input id="stripe-payment-form-submit" type="submit" class="button" value="Submit Payment" />
 		</div>
