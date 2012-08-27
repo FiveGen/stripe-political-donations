@@ -87,26 +87,6 @@ function stripe_plugin_process_card() {
         }
     }
 
-    // Add additional processing here
-    if($response['success']) {
-        // Succeess
-
-        // Now let's hit Ella.
-        $meta['transaction_id'] = $response['id'];
-        $meta['fee'] = $response['fee'];
-        $meta['card_type'] = $response['card_type'];
-        $meta['card_last4'] = $response['card_last4'];
-        if($_POST['ask'] && !empty($_POST['ask'])) $meta['ask'] = $_POST['ask'];
-        if($_POST['tags'] && !empty($_POST['tags'])) $meta['tag'] = $_POST['tags'];
-
-        // OAuth and send payment info to PUT https://sync.revmsg.net/payment
-
-
-    } else {
-        // Failed
-        // Log?
-    }
-
     // Serialize the response back as JSON
     if(isset($response['fee'])) unset($response['fee']);
     if(isset($response['card_type'])) unset($response['card_type']);

@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Political Donations
-Plugin URI: http://revolutionmessaging.com/best-of-breed
+Plugin URI: https://github.com/revolution-messaging/stripe-political-donations
 Description: This plugin turns Wordpress, Stripe.com, and Postmark into the best political donation website ever!!
-Author: Bob Cravens
+Author: Walker Hamilton, Bob Cravens, Joey Nelson
 Version: 1.5.19.1
 Author URI: http://diglabs.com/
 */
