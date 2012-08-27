@@ -59,11 +59,11 @@ function stripe_plugin_process_card() {
 		$meta['token'] = $_POST['token'];
 		$meta['amount'] = $_POST['amount']/100;
 		
-		$potential_total = 2500;
+		$potential_total = 0; //2500;
 		
 		// FUTURE FEATURE
 		// Run check for total here ($2500/election)
-		if(2500 <= $potential_total+($_POST['amount']/100)) {
+		if(2500 <= $potential_total+($_POST['amount']/100) && $meta['eligible']=='agreed') {
 			// They've already given too much!
 			$response['error'] = 'We believe you\'ve already reached your personal donation limit of $2500 for this election. Call '.PHONE_NUMBER.' if you feel this is incorrect, or if you\'d like to discuss other ways to help out our campaign!';
 		} else {

@@ -96,8 +96,8 @@ $(document).ready(function(){
 			charge['name']			= $('#cardName').val();
 			charge['employer']		= $('#employer').val();
 			charge['occupation']	= $('#occupation').val();
-			charge['eligible']		= $('#email').checked=='checked' ? 'agreed' : 'did not agree';
-		
+			charge['eligible']		= $('#eligible').attr('checked')=='checked' ? 'agreed' : 'did not agree';
+			
 			progress('Submitting charge…');
 			$.post('/wp-admin/admin-ajax.php', charge, function(response){
 				// Try to parse the response (expecting JSON).

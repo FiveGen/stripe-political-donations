@@ -9,18 +9,22 @@ Author URI: http://diglabs.com/
 */
 
 // Settings
-$isLiveKeys 		= get_option('stripe_payment_is_live_keys');
-$isLive = strlen($isLiveKeys)==0?false:true;
-$publicKey 			= get_option('stripe_payment_test_public_key');
-$secretKey 			= get_option('stripe_payment_test_secret_key');
+$isLiveKeys 			= get_option('stripe_payment_is_live_keys');
+$isLive 				= strlen($isLiveKeys)==0?false:true;
+$publicKey 				= get_option('stripe_payment_test_public_key');
+$secretKey 				= get_option('stripe_payment_test_secret_key');
 if($isLive) {
-	$publicKey 		= get_option('stripe_payment_live_public_key');
-	$secretKey 		= get_option('stripe_payment_live_secret_key');
+	$publicKey 			= get_option('stripe_payment_live_public_key');
+	$secretKey 			= get_option('stripe_payment_live_secret_key');
 	$ellaKey 			= get_option('stripe_payment_ella_key');
 	$ellaSecret 		= get_option('stripe_payment_ella_secret');
 }
-$currencySymbol 	= get_option('stripe_payment_currency_symbol');
-$transPrefix 		= get_option('stripe_payment_trans_prefix');
+$postmarkKey 			= get_option('stripe_postmark_key');
+$postmarkFromAddress 	= get_option('stripe_postmark_address');
+$postmarkFromName 		= get_option('stripe_postmark_name');
+$postmarkSubject 		= get_option('stripe_postmark_subject');
+$currencySymbol 		= get_option('stripe_payment_currency_symbol');
+$transPrefix 			= get_option('stripe_payment_trans_prefix');
 
 // Define variables
 define( 'STRIPE_PAYMENTS_VERSION', '3.0.1' );
