@@ -4,7 +4,7 @@ Stripe.com Political Donations Wordpress Plugin
 Colophon:
 ----------------
 
-Based on the [work by @rcravens]:https://github.com/rcravens/Stripe.com-Wordpress-Plugin, which was, itself, based on the [work by @wlrs]:https://github.com/wlrs/stripe-terminal
+Based on the [work by](https://github.com/rcravens/Stripe.com-Wordpress-Plugin) @rcravens, which was, itself, based on the [work by](https://github.com/wlrs/stripe-terminal) @wlrs.
 
 RevMsg Added:
 -------------------------------------------------------------------------------------------------
