@@ -12,17 +12,19 @@ function addHeaderCode() {
 	// Use the global defined in the stripe.php file.
 	global $publicKey;
 	global $isLiveKeys;
-	
+
 	if (function_exists('wp_enqueue_script')) {
-		echo '<link type="text/css" rel="stylesheet" href="' . STRIPE_PAYMENTS_PLUGIN_URL . '/stripe.css" />' . "\n";
-		
+		wp_enqueue_style( 'stripe', STRIPE_PAYMENTS_PLUGIN_URL . '/stripe.css' );
+
 		// add our scripts and their dependencies
 		// We're going to manually add jQuery
 		wp_enqueue_script('stripe_payment_plugin', STRIPE_PAYMENTS_PLUGIN_URL . '/stripe.js', array('jquery'), '1.5.19');
 		wp_enqueue_script('stripe', 'https://js.stripe.com/v1/', array('jquery'), '1.5.19');
-		
+		wp_enqueue_script('stripe_payment_plugin', STRIPE_PAYMENTS_PLUGIN_URL . '/stripe.js', array('jquery'), '1.5.19');
+		wp_enqueue_script('stripe_configuration', STRIPE_PAYMENTS_PLUGIN_URL . '/stripe_config.php', null, '1.5.19');
+
 		// emit the javascript variable that holds our public strip key
 		$isLive = strlen($isLiveKeys)==0?'false':'true';
-		echo "<script type='text/javascript'>var stripePublishable='$publicKey';var isLiveKeys=$isLive;</script>\n";
+
 	}
 }
