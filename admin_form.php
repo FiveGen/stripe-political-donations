@@ -22,12 +22,6 @@
         $transPrefix = $_POST['trans_prefix'];
         update_option('stripe_payment_trans_prefix', $transPrefix);
 
-        $ellaKey = $_POST['ella_key'];
-        update_option('stripe_payment_ella_key', $ellaKey);
-
-        $ellaSecret = $_POST['ella_secret'];
-        update_option('stripe_payment_ella_secret', $ellaSecret);
-
         $postmarkKey = $_POST['postmark_key'];
         update_option('stripe_postmark_key', $postmarkKey);
 
@@ -53,8 +47,6 @@
         $isLiveKeys             = get_option('stripe_payment_is_live_keys');
         $currencySymbol         = get_option('stripe_payment_currency_symbol');
         $transPrefix            = get_option('stripe_payment_trans_prefix');
-        $ellaKey                = get_option('stripe_payment_ella_key');
-        $ellaSecret             = get_option('stripe_payment_ella_secret');
         $postmarkKey            = get_option('stripe_postmark_key');
         $postmarkFromAddress    = get_option('stripe_postmark_address');
         $postmarkFromName       = get_option('stripe_postmark_name');
@@ -122,20 +114,8 @@
                 <span>This will prefix all transactions in the stripe dashboard. (e.g. Terminal)</span>
             </li>
         </ul>
-        <h4>Ella Integration for Advanced Reporting (optional)</h4>
-        <p>These keys allow you to pull reports in Revere Dashboard later.</p>
-        <ul>
-            <li>
-                <label for="ella_key">Key:</label>
-                <input type="text" name="ella_key" value="<?php echo $ellaKey; ?>" />
-            </li>
-            <li>
-                <label for="ella_secret">Secret:</label>
-                <input type="text" name="ella_secret" value="<?php echo $ellaSecret; ?>" />
-            </li>
-        </ul>
 
-        <h4>Postmark Receipt Email (optional)</h4>
+        <h4>Postmark Receipt Email (optional) [NOT YET IMPLEMENTED]</h4>
         <p>Use your <a href="http://postmarkapp.com">postmarkapp.com</a> account to send a styled email receipt.</p>
         <ul>
             <li>
