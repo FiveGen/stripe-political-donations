@@ -3,8 +3,8 @@
 add_action('admin_menu', 'stripe_admin_menu');
 function stripe_admin_menu() {
 	add_options_page(
-		'Stripe Payments',
-		'Stripe Payments',
+		'Stripe Political Donations',
+		'Stripe Political',
 		'manage_options',
 		__FILE__,
 		'stripe_admin_form'
