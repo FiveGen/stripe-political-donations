@@ -5,19 +5,49 @@
 //	that contain sensitive data. This prevents this data from
 //	being posted to your site. All sensitive card holder info
 //	is only sent to Stripe.com using HTTPS.
-function create_payment_form($amount = 100, $paymentId = null, $paymentUrl=STRIPE_PAYMENTS_PAYMENT_URL) {
+function create_payment_form($amount = null, $paymentId = null, $paymentUrl=STRIPE_PAYMENTS_PAYMENT_URL) {
 
+	if($amount==null) {
+		$amounts = array('10', '25', '50', '100');
+	} else {
+		$amounts = explode('|', $amount);
+	}
+	
+	if((count($amounts)==1 && !empty($amounts[0])) || (count($amounts)>1)) {
+		//nothing
+	} else {
+		$amounts = array('10', '25', '50', '100');
+	}
+	
+	if(count($amounts)==1 && !empty($amounts[0])) {
+		$amount_fields = '<div class="stripe-payment-form-row">
+			<label>Amount (USD $)</label>
+			<input type="text" id="cardAmount" size="20" name="amount" class="amount required" value="'.$amounts[0].'" />
+			<span class="error"></span>
+		</div>';
+	} else if(count($amounts)>1) {
+		$amount_fields = '<fieldset class="stripe-payment-form-row">
+			<legend>Amount <span class="smalltext">(USD $)</span></legend>';
+		foreach($amounts as $amount) {
+			$amount_fields .= '<span class="radio-amount"><input type="radio" id="card'.$amount.'Amount" name="amount" class="amount required" value="'.$amount.'" /> <label for="card'.$amount.'Amount">$'.$amount.'</label></span>';
+		}
+		$amount_fields .= '<span class="error"></span>
+		</fieldset>';
+	} else {
+		$amount_fields = '<div class="stripe-payment-form-row">
+			<label>Amount (USD $)</label>
+			<input type="text" id="cardAmount" size="20" name="amount" class="amount required" value="100" />
+			<span class="error"></span>
+		</div>';
+	}
+	
 	return <<<EOT
 <div id="stripe-payment-wrap">
 	<form action="$paymentUrl" method="post" id="stripe-payment-form">
 		<input id="paymentId" type="hidden" name="paymentId" value="$paymentId" />
 		<input type="hidden" id="ask" name="ask" value="" />
 		<input type="hidden" id="tags" name="tags" value="" />
-		<div class="stripe-payment-form-row">
-			<label>Amount (USD $)</label>
-			<input type="text" id="cardAmount" size="20" name="amount" disabled="disabled" class="amount required" value="$amount" />
-			<span class="error"></span>
-		</div>
+		$amount_fields
 		<div class="stripe-payment-form-row">
 			<label>Name on Card</label>
 			<input type="text" id="cardName" size="20" name="name" class="required" />

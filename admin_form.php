@@ -22,17 +22,17 @@
         $transPrefix = $_POST['trans_prefix'];
         update_option('stripe_payment_trans_prefix', $transPrefix);
 
-        $postmarkKey = $_POST['postmark_key'];
-        update_option('stripe_postmark_key', $postmarkKey);
-
-        $postmarkFromAddress = $_POST['postmark_from_address'];
-        update_option('stripe_postmark_address', $postmarkFromAddress);
-
-        $postmarkFromName = $_POST['postmark_from_name'];
-        update_option('stripe_postmark_name', $postmarkFromName);
-
-        $postmarkSubject = $_POST['postmark_subject'];
-        update_option('stripe_postmark_subject', $postmarkSubject);
+        // $postmarkKey = $_POST['postmark_key'];
+        // update_option('stripe_postmark_key', $postmarkKey);
+        // 
+        // $postmarkFromAddress = $_POST['postmark_from_address'];
+        // update_option('stripe_postmark_address', $postmarkFromAddress);
+        // 
+        // $postmarkFromName = $_POST['postmark_from_name'];
+        // update_option('stripe_postmark_name', $postmarkFromName);
+        // 
+        // $postmarkSubject = $_POST['postmark_subject'];
+        // update_option('stripe_postmark_subject', $postmarkSubject);
         ?>
 
         <div class="updated"><p><strong><?php _e('Options saved.'); ?></strong></p></div>
@@ -47,9 +47,9 @@
         $isLiveKeys             = get_option('stripe_payment_is_live_keys');
         $currencySymbol         = get_option('stripe_payment_currency_symbol');
         $transPrefix            = get_option('stripe_payment_trans_prefix');
-        $postmarkKey            = get_option('stripe_postmark_key');
-        $postmarkFromAddress    = get_option('stripe_postmark_address');
-        $postmarkFromName       = get_option('stripe_postmark_name');
+        // $postmarkKey            = get_option('stripe_postmark_key');
+        // $postmarkFromAddress    = get_option('stripe_postmark_address');
+        // $postmarkFromName       = get_option('stripe_postmark_name');
     }
 
 ?>
@@ -115,7 +115,7 @@
             </li>
         </ul>
 
-        <h4>Postmark Receipt Email (optional) [NOT YET IMPLEMENTED]</h4>
+        <!-- <h4>Postmark Receipt Email (optional)</h4>
         <p>Use your <a href="http://postmarkapp.com">postmarkapp.com</a> account to send a styled email receipt.</p>
         <ul>
             <li>
@@ -134,7 +134,7 @@
                 <label for="postmark_subject">Subject:</label>
                 <input type="text" name="postmark_subject" value="<?php echo $postmarkSubject; ?>" />
             </li>
-        </ul>
+        </ul> -->
 
         <p class="submit">
             <input class="button-primary" type="submit" name="Submit" value="<?php _e('Save Options'); ?>" />

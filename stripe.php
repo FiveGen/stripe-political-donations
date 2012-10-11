@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Political Donations
-Plugin URI: https://github.com/revolution-messaging/stripe-political-donations
+Plugin URI: http://revolutionmessaging.com/best-of-breed
 Description: This plugin turns Wordpress, Stripe.com, and Postmark into the best political donation website ever!!
-Author: Walker Hamilton, Bob Cravens, Joey Nelson
-Version: 1.1
-Author URI: http://revolutionmessaging.com
+Author: Revolution Messaging
+Version: 1.1.1
+Author URI: http://revolutionmessaging.com/
 */
 
 // Settings
@@ -16,8 +16,6 @@ $secretKey              = get_option('stripe_payment_test_secret_key');
 if($isLive) {
     $publicKey          = get_option('stripe_payment_live_public_key');
     $secretKey          = get_option('stripe_payment_live_secret_key');
-    $ellaKey            = get_option('stripe_payment_ella_key');
-    $ellaSecret         = get_option('stripe_payment_ella_secret');
 }
 $postmarkKey            = get_option('stripe_postmark_key');
 $postmarkFromAddress    = get_option('stripe_postmark_address');
@@ -27,7 +25,7 @@ $currencySymbol         = get_option('stripe_payment_currency_symbol');
 $transPrefix            = get_option('stripe_payment_trans_prefix');
 
 // Define variables
-define( 'STRIPE_PAYMENTS_VERSION', '3.0.1' );
+define( 'STRIPE_PAYMENTS_VERSION', '1.1.1' );
 
 if ( ! defined( 'STRIPE_PAYMENTS_PLUGIN_BASENAME' ) )
     define( 'STRIPE_PAYMENTS_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );

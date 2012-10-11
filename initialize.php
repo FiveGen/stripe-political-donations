@@ -19,7 +19,7 @@ function enqueueHeaderCode() {
     wp_enqueue_style( 'stripe', STRIPE_PAYMENTS_PLUGIN_URL . '/stripe.css', 0);
 
     // add our scripts and their dependencies
-    // We're going to manually add jQuery
+	wp_enqueue_script( 'jquery' );
     wp_enqueue_script('stripe_payment_plugin', STRIPE_PAYMENTS_PLUGIN_URL . '/stripe.js', array('jquery'));
     wp_enqueue_script('stripe', 'https://js.stripe.com/v1/', array('jquery'));
     wp_enqueue_script('stripe_payment_plugin', STRIPE_PAYMENTS_PLUGIN_URL . '/stripe.js', array('jquery'));

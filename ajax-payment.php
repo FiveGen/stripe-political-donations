@@ -18,7 +18,7 @@ function stripe_plugin_process_card() {
 
     if($_POST) {
         // Load the official Stripe PHP bootstrap file
-        require_once STRIPE_PAYMENTS_PLUGIN_DIR.'/stripe-php-1.5.19/lib/Stripe.php';
+        require_once STRIPE_PAYMENTS_PLUGIN_DIR.'/stripe-php-1.7.7/lib/Stripe.php';
 
         // Extract the extra data
         $meta = array();
@@ -85,6 +85,26 @@ function stripe_plugin_process_card() {
                 $response['error'] = $e->getMessage();
             }
         }
+    }
+
+    // Add additional processing here
+    if($response['success']) {
+        // Succeess
+
+        // Now let's hit Ella.
+        $meta['transaction_id'] = $response['id'];
+        $meta['fee'] = $response['fee'];
+        $meta['card_type'] = $response['card_type'];
+        $meta['card_last4'] = $response['card_last4'];
+        if($_POST['ask'] && !empty($_POST['ask'])) $meta['ask'] = $_POST['ask'];
+        if($_POST['tags'] && !empty($_POST['tags'])) $meta['tag'] = $_POST['tags'];
+
+        // OAuth and send payment info to PUT https://sync.revmsg.net/payment
+
+
+    } else {
+        // Failed
+        // Log?
     }
 
     // Serialize the response back as JSON

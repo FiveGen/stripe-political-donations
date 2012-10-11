@@ -1,4 +1,4 @@
-$(document).ready(function(){
+jQuery(document).ready(function(){
 	// If the keys are not the 'live' ones
 	if(!isLiveKeys) {
 		var dom = '<div class="stripe-payment-form-warning">';
@@ -6,12 +6,12 @@ $(document).ready(function(){
 		dom += '<p>Use the the credit card number <strong>4242-4242-4242</strong> and ';
 		dom += 'a CVC of <strong>any 3 or 4 digit number</strong> for testing.</p>';
 		dom += '</div>';
-		$('#stripe-payment-wrap').prepend(dom);
+		jQuery('#stripe-payment-wrap').prepend(dom);
 
-		$('#cardNumber').val('4242424242424242');
-		$('#cardCvc').val('123');
-		$('#cardName').val('John Doe');
-		$('#email').val('john.doe@example.com');
+		jQuery('#cardNumber').val('4242424242424242');
+		jQuery('#cardCvc').val('123');
+		jQuery('#cardName').val('John Doe');
+		jQuery('#email').val('john.doe@example.com');
 	}
 
 	// Set the public key for use by Stripe.com
@@ -22,23 +22,23 @@ $(document).ready(function(){
 	showYears();
 
 	// Automatically add the autocomplete='off' attribute to all the input fields
-	$("input").attr("autocomplete", "off");
+	jQuery("input").attr("autocomplete", "off");
 
 	// Sanitize and validate all input elements
-	$("input").blur(function(){
-		var input = $(this);
+	jQuery("input").blur(function(){
+		var input = jQuery(this);
 		sanitize(input);
 		validate(input);
 	});
 
 	// Initial validation of the amount
-	$('#cardAmount').blur();
+	jQuery('#cardAmount').blur();
 
 	// Bind to the submit for the form
-	$("#stripe-payment-form").submit(function(event) {
+	jQuery("#stripe-payment-form").submit(function(event) {
 
 		// Check for configuration errors
-		if($('.stripe-payment-config-errors').length>0) {
+		if(jQuery('.stripe-payment-config-errors').length>0) {
 			alert('Fix the configuration errors before continuing.');
 			return false;
 		}
@@ -55,14 +55,14 @@ $(document).ready(function(){
 
 		// Get the form values
 		var params = {};
-		params['name'] 		= $('#cardName').val();
-		params['number'] 	= $('#cardNumber').val();
-		params['cvc']		= $('#cardCvc').val();
-		params['exp_month'] = $('#cardExpiryMonth').val();
-		params['exp_year']	= $('#cardExpiryYear').val();
+		params['name'] 		= jQuery('#cardName').val();
+		params['number'] 	= jQuery('#cardNumber').val();
+		params['cvc']		= jQuery('#cardCvc').val();
+		params['exp_month'] = jQuery('#cardExpiryMonth').val();
+		params['exp_year']	= jQuery('#cardExpiryYear').val();
 
 		// Get the charge amount and convert to cents
-		var amount = $('#cardAmount').val()*100;
+		var amount = jQuery('#cardAmount').val()*100;
 
 		// Validate card information using Stripe.com.
 		//	Note: createToken returns immediately. The card
@@ -85,18 +85,18 @@ $(document).ready(function(){
 			var charge = {};
 			charge['token']		= response['id'];
 			charge['amount']	= amount;
-			charge['paymentId'] = $('#paymentId').val();
-			charge['email']		= $('#email').val();
+			charge['paymentId'] = jQuery('#paymentId').val();
+			charge['email']		= jQuery('#email').val();
 			charge['action']	= 'stripe_plugin_process_card';
 
 			// Our other Data
-			charge['ask']			= $('#ask').val();
-			charge['tags']			= $('#tags').val();
+			charge['ask']			= jQuery('#ask').val();
+			charge['tags']			= jQuery('#tags').val();
 
-			charge['name']			= $('#cardName').val();
-			charge['employer']		= $('#employer').val();
-			charge['occupation']	= $('#occupation').val();
-			charge['eligible']		= $('#eligible').attr('checked')=='checked' ? 'agreed' : 'did not agree';
+			charge['name']			= jQuery('#cardName').val();
+			charge['employer']		= jQuery('#employer').val();
+			charge['occupation']	= jQuery('#occupation').val();
+			charge['eligible']		= jQuery('#eligible').attr('checked')=='checked' ? 'agreed' : 'did not agree';
 
 			progress('Submitting charge…');
 			$.post('/wp-admin/admin-ajax.php', charge, function(response){
@@ -116,8 +116,8 @@ $(document).ready(function(){
 					// Card was successfully charged. Replace the form with a
 					// dynamically generated receipt.
 
-					$('#stripe-payment-wrap').html("<h4>Thank You for your donation of <b>$" + response['amount'] + "</b> to our campaign!</h4><p>Your transaction ID receipt is: " + response['id'] + "</p>").css('background-color', '#fff');
-					$("<p><a href='javascript:void(0);' class='red'>Make another charge</a></p>").click(function(){ location.href = location.href; }).appendTo('#stripe-payment-wrap');
+					jQuery('#stripe-payment-wrap').html("<h4>Thank You for your donation of <b>$" + response['amount'] + "</b> to our campaign!</h4><p>Your transaction ID receipt is: " + response['id'] + "</p>").css('background-color', '#fff');
+					jQuery("<p><a href='javascript:void(0);' class='red'>Make another charge</a></p>").click(function(){ location.href = location.href; }).appendTo('#stripe-payment-wrap');
 					progress('success');
 				} else {
 					// Show the error.
@@ -136,27 +136,27 @@ $(document).ready(function(){
 // Lock and unlock the form. This prevents changes or
 //	double submissions during payment processing.
 function lock_form() {
-	$("#stripe-payment-form input").not('.amount').attr("disabled", "disabled");
-	$("#stripe-payment-form select").attr("disabled", "disabled");
-	$("#stripe-payment-form button").attr("disabled", "disabled");
+	jQuery("#stripe-payment-form input").not('.amount').attr("disabled", "disabled");
+	jQuery("#stripe-payment-form select").attr("disabled", "disabled");
+	jQuery("#stripe-payment-form button").attr("disabled", "disabled");
 }
 function unlock_form() {
-	$("#stripe-payment-form input").not('.amount').removeAttr("disabled");
-	$("#stripe-payment-form select").removeAttr("disabled");
-	$("#stripe-payment-form button").removeAttr("disabled");
+	jQuery("#stripe-payment-form input").not('.amount').removeAttr("disabled");
+	jQuery("#stripe-payment-form select").removeAttr("disabled");
+	jQuery("#stripe-payment-form button").removeAttr("disabled");
 }
 
 // Helper function to display progress messages.
 function progress(msg){
-	$('.stripe-payment-form-row-progress span.message').html(msg);
+	jQuery('.stripe-payment-form-row-progress span.message').html(msg);
 }
 
 // Validation helpers.
 function validateForm() {
 	var isValid = true;
-	$("input").each(function(){
-		sanitize($(this));
-		isValid = validate($(this)) && isValid;
+	jQuery("input").each(function(){
+		sanitize(jQuery(this));
+		isValid = validate(jQuery(this)) && isValid;
 	});
 	return isValid;
 }
@@ -174,7 +174,7 @@ function sanitize(elem) {
 }
 function validate(elem) {
 	var row = elem.closest('.stripe-payment-form-row');
-	var error = $('.error', row);
+	var error = jQuery('.error', row);
 	var value = $.trim(elem.val());
 	if(elem.hasClass("required") && !value.length){
 		error.html('Required.');
@@ -196,17 +196,17 @@ function validate(elem) {
 
 // Automatically populate the month and year selections.
 function showMonths() {
-	var months = $(".card-expiry-month"),
+	var months = jQuery(".card-expiry-month"),
 		month = new Date().getMonth() + 1;
 	for(var i=1;i<=12;i++){
-		months.append($("<option value='"+(i<10?"0":"")+i+"' "+(month===i ? "selected" : "")+">"+(i<10?"0":"")+i+"</option>"));
+		months.append(jQuery("<option value='"+(i<10?"0":"")+i+"' "+(month===i ? "selected" : "")+">"+(i<10?"0":"")+i+"</option>"));
 	}
 }
 function showYears() {
-	var years = $(".card-expiry-year"),
+	var years = jQuery(".card-expiry-year"),
 		year = new Date().getFullYear();
 
 	for (var i = 0; i < 12; i++) {
-		years.append($("<option value='"+(i + year)+"' "+(i === 0 ? "selected" : "")+">"+(i + year)+"</option>"))
+		years.append(jQuery("<option value='"+(i + year)+"' "+(i === 0 ? "selected" : "")+">"+(i + year)+"</option>"))
 	}
 }

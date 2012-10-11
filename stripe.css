@@ -38,6 +38,18 @@ div.stripe-payment-config-errors ul li {
 	padding-top: 8px;
 }
 
+fieldset.stripe-payment-form-row label {
+	display: inline;
+	float: none;
+	width: inherit;
+	padding: 0;
+}
+
+fieldset.stripe-payment-form-row span.radio-amount {
+	display: inline-block;
+	padding: 0 20px 0 0;
+}
+
 .stripe-payment-form-row label.eligibility-label {
 	width: 400px;
 	font-weight: bold;
