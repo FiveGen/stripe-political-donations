@@ -12,13 +12,13 @@ function create_payment_form($amount = null, $paymentId = null, $paymentUrl=STRI
 	} else {
 		$amounts = explode('|', $amount);
 	}
-	
+
 	if((count($amounts)==1 && !empty($amounts[0])) || (count($amounts)>1)) {
 		//nothing
 	} else {
 		$amounts = array('10', '25', '50', '100');
 	}
-	
+
 	if(count($amounts)==1 && !empty($amounts[0])) {
 		$amount_fields = '<div class="stripe-payment-form-row">
 			<label>Amount (USD $)</label>
@@ -40,7 +40,7 @@ function create_payment_form($amount = null, $paymentId = null, $paymentUrl=STRI
 			<span class="error"></span>
 		</div>';
 	}
-	
+
 	return <<<EOT
 <div id="stripe-payment-wrap">
 	<form action="$paymentUrl" method="post" id="stripe-payment-form">
@@ -114,4 +114,3 @@ function create_payment_form($amount = null, $paymentId = null, $paymentUrl=STRI
 </div>
 EOT;
 }
-?>

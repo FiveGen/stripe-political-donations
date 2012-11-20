@@ -24,13 +24,13 @@
 
         // $postmarkKey = $_POST['postmark_key'];
         // update_option('stripe_postmark_key', $postmarkKey);
-        // 
+        //
         // $postmarkFromAddress = $_POST['postmark_from_address'];
         // update_option('stripe_postmark_address', $postmarkFromAddress);
-        // 
+        //
         // $postmarkFromName = $_POST['postmark_from_name'];
         // update_option('stripe_postmark_name', $postmarkFromName);
-        // 
+        //
         // $postmarkSubject = $_POST['postmark_subject'];
         // update_option('stripe_postmark_subject', $postmarkSubject);
         ?>

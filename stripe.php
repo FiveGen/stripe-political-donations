@@ -4,7 +4,7 @@ Plugin Name: Political Donations
 Plugin URI: http://revolutionmessaging.com/best-of-breed
 Description: This plugin turns Wordpress, Stripe.com, and Postmark into the best political donation website ever!!
 Author: Revolution Messaging
-Version: 1.1.1
+Version: 1.1.3
 Author URI: http://revolutionmessaging.com/
 */
 
@@ -25,7 +25,7 @@ $currencySymbol         = get_option('stripe_payment_currency_symbol');
 $transPrefix            = get_option('stripe_payment_trans_prefix');
 
 // Define variables
-define( 'STRIPE_PAYMENTS_VERSION', '1.1.1' );
+define( 'STRIPE_PAYMENTS_VERSION', '1.1.3' );
 
 if ( ! defined( 'STRIPE_PAYMENTS_PLUGIN_BASENAME' ) )
     define( 'STRIPE_PAYMENTS_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
