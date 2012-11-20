@@ -85,6 +85,7 @@ fieldset.stripe-payment-form-row span.radio-amount {
 	background-color: #f8f8f8;
 	font-size: 14px;
 }
-.stripe-payment-form-row-progress span.message:empty {
+.stripe-payment-form-row-progress span.message:empty { 
 	background-color: transparent;
 }
+

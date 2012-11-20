@@ -3,7 +3,7 @@ Contributors: signalfade
 Tags: donations, FEC, politics, fundraising, stripe.com, stripe, contributions
 Requires at least: 3.0.0
 Tested up to: 3.3.2
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 
 This plugin helps you integrate and use Stripe.com in order to solicit campaign donations from your site.
 
