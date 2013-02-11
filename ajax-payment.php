@@ -46,8 +46,10 @@ function stripe_plugin_process_card() {
 
         if($_POST['amount']) {
             setlocale(LC_MONETARY, 'en_US');
-            $amount = money_format('%.2n', $_POST['amount']);
-            $amount = str_replace('$', '', $amount);
+            $amount = str_replace(',', '', $amount);
+            $amount = money_format('%.2n', $amount);
+            // American adjustment for payment (we're using en_US above only for now, so let's assume...)
+            $amount = str_replace(array('$', ','), '', $amount);
             $amount = $amount*100;
         }
 
